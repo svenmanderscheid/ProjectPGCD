@@ -8,7 +8,7 @@ br= 0 #BottomRight
 tl= 0 #TopLeft
 
 color = 0
-colorlist = ["red", "green", "yellow", "blue"]
+colorlist = ["red", "green", "yellow", "orange"]
 
 
 def change_color():
@@ -28,13 +28,21 @@ def move(count):
 
 def writetext(b):
     global FONT_SIZE
-    t.left(45)
-    x = int(math.sqrt((b**2+b**2)/4))
     y = int(b/2-FONT_SIZE) #Trouver le millieu vertical en respectant la taille de la police
-    t.forward(x)
-    t.write(int(b/multiplier),font=("Arial",FONT_SIZE+3,"normal"))
-    t.backward(x)
-    t.right(45)
+    x = int(b/2-len(str(b))/2) #Trouver le milleux horizontal en respectant la taille du chiffre
+    t.up()
+    t.left(90)
+    t.forward(y) #Revenir au centre vertical
+    t.right(90)
+    t.forward(x) # Aller au centre horizontal
+    if int(b/multiplier >= 10):
+        t.write(int(b/multiplier),align="left",font=("Arial",FONT_SIZE))
+    else:
+        t.write(int(b/multiplier),align="left",font=("Arial",FONT_SIZE))
+    t.backward(x) #Revenir a la bordure exterieure à gauche
+    t.right(90)
+    t.forward(y) #Aller en bas a gauche où on était avant
+    t.left(90)
     t.down()
 
 def drawoutersquare(a, b):
@@ -70,7 +78,7 @@ def drawsquare(a,b,i,count):
 #b=int(input("Quel est votre largueur?"))
 
 a=21
-b=15
+b=11
 
 multiplier= 600//a #pour agrandir l'apparences des carrés
 
