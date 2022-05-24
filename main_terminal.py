@@ -1,21 +1,21 @@
 import turtle as t
 import math
 
-global br, tl, colorlist, color, FONT_SIZE
+global br, tl, color_list, color, FONT_SIZE
 
 FONT_SIZE = 8
 br= 0 #BottomRight
 tl= 0 #TopLeft
 
 color = 0
-colorlist = ["red", "green", "yellow", "orange"]
+color_list = ["red", "green", "yellow", "orange"]
 
 
 def change_color():
-    global color, colorlist
+    global color, color_list
     color = (color + 1 ) % 4
     t.pencolor("Black")
-    t.fillcolor(colorlist[color])
+    t.fillcolor(color_list[color])
 
 def move(count):
     global br, tl
@@ -86,7 +86,7 @@ a=a*multiplier
 b=b*multiplier
 
 
-t.speed(10)
+t.speed(1000)
 t.penup()
 t.right (180)
 t.forward(a//2)
@@ -99,10 +99,10 @@ r = 0
 count = 1 #check if we need to move right or up(even = right/odd = up)
 while b > 0:
     if a > b:
-        i = a // b # how many entire squares fit into the big on
+        i = a // b # how many entire squares fit into the big one
         r = a % b
         drawsquare(a,b,i,count)
-        count = count +1
+        count = count + 1
         a = b
         b = r
 print("Le PGCD est: ", a // multiplier)
