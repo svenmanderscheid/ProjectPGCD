@@ -32,8 +32,7 @@ class Lotfi(tk.Entry):
 
 
 def clear():
-    number_a.delete(0, END)
-    number_a.insert(0, "")
+    tk.StringVar=0
 
 
 def change_color():
@@ -109,6 +108,9 @@ def draw():
     a = int(number_a.get())
     b = int(number_b.get())
 
+    if b>a :
+        a,b = b,a
+
     multiplier_a = int(600 / a)
     multiplier_b = int(600 / b)
 
@@ -126,7 +128,7 @@ def draw():
     count = 1  # check if we need to move right or up(even = right/odd = up)
 
     while b > 0:
-        if a > b:
+        if a >= b:
             i = a // b  # how many entire squares fit into the big one
             r = a % b
             drawsquare(a * multiplier_a, b * multiplier_a, i, count)
